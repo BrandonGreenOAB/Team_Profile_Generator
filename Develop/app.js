@@ -1,4 +1,5 @@
 const Manager = require("./lib/Manager");
+const Employee = require("./lib/Employee")
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
@@ -22,16 +23,62 @@ function mainMenu() {
             name: "managerName",
             message: "What is your manager's name?",
             validate: answer => {
-                if(answer !==""){
+                if(answer){
                     return true;
                 }
                 return "Please enter a name."
-            }
+            },
+            type: "input",
+            name: "managerId",
+            message: "What is your manager Id?",
+            validate: answer => {
+                if(answer !==""){
+                    return true;
+                }
+                return "Please enter an id."
+            },
+            type: "input",
+            name: "managerEmail",
+            message: "what is your manager email?",
+            validate: answer => {
+                if(answer !==""){
+                    return true;
+                }
+                return "Please enter a email."
+            },
+            type: "input",
+            name: "managerNumber",
+            message: "what is your manager office number?",
+            validate: answer => {
+                if(answer !==""){
+                    return true;
+                }
+                return "Please enter a number"
+            },
 
         }).then(answer => {
-            const manager = new Manager(answer.id)
+            const manager = new Manager(answer.managerName, answer.managerId, answer.managerEmail, answer.managerNumber)
             teamMembers.push(manager);
             idArray.push(answer.managerId);
+
+            console.log(this.answer)
+
+            // inquirer.prompt({
+            //     type: "input",
+            //     name: "email",
+            //     message: "what is your email?",
+            //     validate: answer => {
+            //         if (answer !== ""){
+            //             return true;
+            //         }
+            //         return "please enter an email."
+            //     },
+            //     type: "input",
+            //     name: "officeNumber"
+            // }).then(answer => {
+            // (getEmail(answer))
+            // console.log(this.email)
+            // })
             // type: "list"
             // name: "memberChoice",
             // message: "which type of team member would you like to add?",

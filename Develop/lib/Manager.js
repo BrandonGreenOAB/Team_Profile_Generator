@@ -7,6 +7,9 @@ class Manager extends Employee {
 
         super(name, id, email);
         this.officeNumber = officeNumber;
+        this.name = name;
+        this.id = id;
+        this.email = email;
 
     }
 
