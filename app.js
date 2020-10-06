@@ -62,6 +62,7 @@ function mainMenu() {
             
         ]).then(answer => {
             const manager = new Manager(answer.managerName, answer.managerId, answer.managerEmail, answer.managerNumber)
+            console.log(manager);
             teamMembers.push(manager);
             idArray.push(answer.managerId);
             nextTeamMember();
@@ -86,9 +87,10 @@ function mainMenu() {
                 createIntern();
             }
             if (answer.memberChoice === "I don't want anymore team members") {
-                console.log("Let's finalize your team.")
-                console.log(idArray);
-                console.log(teamMembers);
+              fs.writeFile(outputPath, render(teamMembers), "utf-8", function (err) {
+                if (err) throw err;
+                console.log("we are building your team! hang tight!")
+              })
             }
         })
 
